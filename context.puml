@@ -1,0 +1,14 @@
+@startuml
+actor Usuario
+
+rectangle "Repo-Guardian\n(CLI/TUI)" as RG {
+}
+
+database "Repositorio Git\n(.git/objects)" as Git
+cloud "GitHub API" as API
+
+Usuario --> RG : Ejecuta comandos\n(scan, repair, export)
+RG --> Git : Lee objetos,\nvalida DAG, calcula hashes
+RG --> API : (opcional) Subir\ngraphml a Release,\nconsultar metadata
+
+@enduml
